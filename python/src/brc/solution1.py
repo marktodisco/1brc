@@ -30,15 +30,13 @@ class Station:
 
 
 def solve(path: str) -> str:
-    with open(path, "r") as fp:
-        data = fp.read().splitlines()
-
     stations: dict[str, Station] = defaultdict(Station)
 
-    for line in data:
-        name, temperature = line.split(";")
-        temp_x10 = temperature.replace(".", "")
-        stations[name].update(int(temp_x10))
+    with open(path, "r") as fp:
+        for line in fp:
+            name, temperature = line.strip().split(";")
+            temp_x10 = temperature.replace(".", "")
+            stations[name].update(int(temp_x10))
 
     sorted_stations = dict(sorted(stations.items(), key=lambda x: x[0]))
 

@@ -34,3 +34,13 @@ def test_measurements(tag: str):
     actual = solution1.solve(f"{TEST_DATA_ROOT}/measurements-{tag}.txt")
 
     assert expected == actual
+
+
+@pytest.mark.slow
+def test_measurements_full():
+    with open(f"{TEST_DATA_ROOT}/measurements.out", "r") as fp:
+        expected = fp.read()
+
+    actual = solution1.solve(f"{TEST_DATA_ROOT}/measurements.txt")
+
+    assert expected == actual
